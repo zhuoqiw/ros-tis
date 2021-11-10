@@ -16,7 +16,8 @@ RUN wget -O tis.tar.gz ${TIS_TAR_GZ} \
   && rm tis.tar.gz
 
 # Install TIS dependencies
-RUN tis-src/scripts/dependency-manager install -y --no-update -m base,v4l2,libusb
+RUN sed -i 's?"sudo", "apt", "install"?"sudo", "apt-get", "install"?g' tis-src/scripts/dependency-manager \
+  && tis-src/scripts/dependency-manager install -y --no-update -m base,v4l2,libusb
 
 # Compile
 RUN cmake \
