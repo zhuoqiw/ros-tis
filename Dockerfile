@@ -17,7 +17,7 @@ RUN wget -O tis.tar.gz ${TIS_TAR_GZ} \
 
 # Install TIS compile dependencies
 RUN sed -i 's?"sudo", "apt"?"sudo", "apt-get"?g' /tis-src/scripts/dependency-manager \
-  && /tis-src/scripts/dependency-manager install -y –-compilation
+  && /tis-src/scripts/dependency-manager install -y --compilation
 
 # Compile
 RUN cmake \
@@ -37,7 +37,7 @@ COPY --from=BUILD /tis-src /tis-src
 COPY --from=BUILD /opt/tiscamera /opt/tiscamera
 
 # Install TIS runtime dependencies
-RUN /tis-src/scripts/dependency-manager install -y –-runtime \
+RUN /tis-src/scripts/dependency-manager install -y --runtime \
   && rm -r /tis-src
 
 # Update ldconfig
