@@ -21,6 +21,7 @@ RUN sed -i 's?"sudo", "apt"?"sudo", "apt-get"?g' tis-src/scripts/dependency-mana
 
 # Compile
 RUN cmake \
+  -D CMAKE_INSTALL_PREFIX=/opt/tiscamera \
   -D BUILD_TOOLS:BOOL=OFF \
   -S tis-src/ \
   -B tis-bld/ \
