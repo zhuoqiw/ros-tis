@@ -1,5 +1,5 @@
 # Install TIS on ROS
-FROM ros:galactic AS BUILD
+FROM ros:galactic
 
 # URL
 ARG TIS_TAR_GZ=https://github.com/TheImagingSource/tiscamera/archive/refs/tags/v-tiscamera-0.14.0.tar.gz
@@ -26,20 +26,4 @@ RUN cmake \
   -S /tis-src/ \
   -B /tis-bld/ \
   && cmake --build /tis-bld/ --target install \
-  && rm -r /tis-bld
-
-FROM ros:galactic
-
-# Copy TIS source
-COPY --from=BUILD /tis-src /tis-src
-
-# Copy TIS binary
-COPY --from=BUILD /opt/tiscamera /opt/tiscamera
-
-# Install TIS runtime dependencies
-RUN /tis-src/scripts/dependency-manager install -y --runtime -m base,v4l2,libusb\
-  && rm -r /tis-src
-
-# Update ldconfig
-RUN echo "/opt/tiscamera/lib" >> /etc/ld.so.conf.d/tiscamera.conf \
-  && ldconfig
+  && rm -r /tis-src /tis-bld
