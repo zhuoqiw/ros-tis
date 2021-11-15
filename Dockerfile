@@ -1,5 +1,5 @@
 # Install TIS on ROS
-FROM ros:galactic AS BUILD
+FROM ros:galactic
 
 # Download
 RUN git clone --depth 1 --branch v-tiscamera-0.14.0 https://github.com/TheImagingSource/tiscamera.git /tiscamera
