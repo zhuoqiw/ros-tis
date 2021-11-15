@@ -8,7 +8,7 @@ RUN git clone --depth 1 --branch v-tiscamera-0.14.0 https://github.com/TheImagin
 RUN sed -i 's?"sudo", "apt"?"sudo", "apt-get"?g' /tiscamera/scripts/dependency-manager \
   && /tiscamera/scripts/dependency-manager install -y --compilation -m base,v4l2,libusb
 
-# Compile
+# Compile and install
 RUN mkdir /tiscamera/build \
   && cmake \
     -D BUILD_TOOLS:BOOL=OFF \
