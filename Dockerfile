@@ -12,7 +12,6 @@ RUN sed -i 's?"sudo", "apt"?"sudo", "apt-get"?g' tiscamera/scripts/dependency-ma
 # Compile and install
 RUN mkdir tiscamera/build \
   && cmake \
-    -D BUILD_TOOLS:BOOL=OFF \
     -S tiscamera/ \
     -B tiscamera/build \
   && cmake --build tiscamera/build/ --target install \
