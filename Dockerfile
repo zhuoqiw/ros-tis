@@ -6,7 +6,7 @@ RUN git clone --depth 1 --branch v-tiscamera-0.14.0 https://github.com/TheImagin
 
 # Install TIS dependencies
 RUN sed -i 's?"sudo", "apt"?"sudo", "apt-get"?g' tiscamera/scripts/dependency-manager \
-  && tiscamera/scripts/dependency-manager install -y
+  && tiscamera/scripts/dependency-manager install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Compile and install
