@@ -4,6 +4,7 @@ FROM ubuntu:18.04
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
   wget \
+  python3 \
   && rm -rf /var/lib/apt/lists/*
 
 # Download
