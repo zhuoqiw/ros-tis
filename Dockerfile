@@ -3,21 +3,23 @@ FROM ubuntu:18.04
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  git \
+  wget \
   && rm -rf /var/lib/apt/lists/*
 
 # Download
-RUN git clone --depth 1 --branch v-tiscamera-0.14.0 https://github.com/TheImagingSource/tiscamera.git
+RUN wget https://github.com/TheImagingSource/tiscamera/archive/refs/tags/v-tiscamera-0.14.0.tar.gz \
+  && tar -xzf tiscamera-v-tiscamera-0.14.0.tar.gz \
+  && rm tiscamera-v-tiscamera-0.14.0.tar.gz
 
 # Install TIS dependencies
-RUN sed -i 's?"sudo", "apt"?"sudo", "apt-get"?g' tiscamera/scripts/dependency-manager \
-  && tiscamera/scripts/dependency-manager install -y \
+RUN sed -i 's?"sudo", "apt"?"sudo", "apt-get"?g' tiscamera-v-tiscamera-0.14.0/scripts/dependency-manager \
+  && tiscamera-v-tiscamera-0.14.0/scripts/dependency-manager install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Compile and install
-RUN mkdir tiscamera/build \
+RUN mkdir tiscamera-v-tiscamera-0.14.0/build \
   && cmake \
-    -S tiscamera/ \
-    -B tiscamera/build \
-  && cmake --build tiscamera/build/ --target install \
-  && rm -r tiscamera
+    -S tiscamera-v-tiscamera-0.14.0/ \
+    -B tiscamera-v-tiscamera-0.14.0/build \
+  && cmake --build tiscamera-v-tiscamera-0.14.0/build/ --target install \
+  && rm -r tiscamera-v-tiscamera-0.14.0
