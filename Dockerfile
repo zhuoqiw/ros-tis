@@ -12,14 +12,14 @@ RUN wget https://github.com/TheImagingSource/tiscamera/archive/refs/tags/v-tisca
   && rm v-tiscamera-0.14.0.tar.gz
 
 # Install TIS dependencies
-RUN sed -i 's?"sudo", "apt"?"sudo", "apt-get"?g' v-tiscamera-0.14.0/scripts/dependency-manager \
-  && v-tiscamera-0.14.0/scripts/dependency-manager install -y \
+RUN sed -i 's?"sudo", "apt"?"sudo", "apt-get"?g' tiscamera-v-tiscamera-0.14.0/scripts/dependency-manager \
+  && tiscamera-v-tiscamera-0.14.0/scripts/dependency-manager install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Compile and install
-RUN mkdir v-tiscamera-0.14.0/build \
+RUN mkdir tiscamera-v-tiscamera-0.14.0/build \
   && cmake \
-    -S v-tiscamera-0.14.0/ \
-    -B v-tiscamera-0.14.0/build \
-  && cmake --build v-tiscamera-0.14.0/build/ --target install \
-  && rm -r v-tiscamera-0.14.0
+    -S tiscamera-v-tiscamera-0.14.0/ \
+    -B tiscamera-v-tiscamera-0.14.0/build \
+  && cmake --build tiscamera-v-tiscamera-0.14.0/build/ --target install \
+  && rm -r tiscamera-v-tiscamera-0.14.0
