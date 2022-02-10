@@ -1,6 +1,11 @@
 # Install TIS on ROS
 FROM ubuntu:18.04
 
+# Install dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  git \
+  && rm -rf /var/lib/apt/lists/*
+
 # Download
 RUN git clone --depth 1 --branch v-tiscamera-0.14.0 https://github.com/TheImagingSource/tiscamera.git
 
