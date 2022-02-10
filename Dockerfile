@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 # Download
-RUN wget https://github.com/TheImagingSource/tiscamera/archive/refs/tags/v-tiscamera-0.14.0.tar.gz \
+RUN wget https://github.com/TheImagingSource/tiscamera/archive/refs/tags/v-tiscamera-0.14.0.tar.gz --no-check-certificate \
   && tar -xzf tiscamera-v-tiscamera-0.14.0.tar.gz \
   && rm tiscamera-v-tiscamera-0.14.0.tar.gz
 
