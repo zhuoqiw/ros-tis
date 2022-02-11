@@ -4,6 +4,9 @@ FROM ubuntu:18.04
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
   wget \
+  libzip4 \
+  libglib2.0-0 \
+  libgirepository-1.0-1 \
   && rm -rf /var/lib/apt/lists/*
 
 # Download and install and remove
