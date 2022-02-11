@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   python3-gst-1.0 \
   python-gi \
   python-gst-1.0 \
+  dialog \
   && rm -rf /var/lib/apt/lists/*
 
 # Download and install and remove
