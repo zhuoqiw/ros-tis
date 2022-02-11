@@ -10,7 +10,7 @@ defaults:
 jobs:
   job1:
     name: Build image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       -
         name: Set up QEMU
