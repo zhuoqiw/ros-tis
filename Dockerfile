@@ -7,6 +7,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libzip4 \
   libglib2.0-0 \
   libgirepository-1.0-1 \
+  libusb-1.0-0 \
+  libgstreamer1.0-0 \
+  gstreamer1.0-plugins-base \
+  gstreamer1.0-plugins-good \
+  gstreamer1.0-plugins-bad \
+  gstreamer1.0-plugins-ugly \
+  libxml2 \
+  libpcap0.8 \
+  python3-pyqt5 \
+  python3-gi \
+  python3-gst-1.0 \
+  python-gi \
+  python-gst-1.0 \
   && rm -rf /var/lib/apt/lists/*
 
 # Download and install and remove
