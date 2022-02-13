@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 # Download
-RUN wget -O tis.tar.gz ${TIS_TAR_GZ} -no-check-certificate \
+RUN wget -O tis.tar.gz ${TIS_TAR_GZ} --no-check-certificate \
   && mkdir -p tis/build \
   && tar -xzf tis.tar.gz --strip-components=1 -C tis \
   && rm tis.tar.gz
