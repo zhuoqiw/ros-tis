@@ -17,6 +17,7 @@ RUN wget -O tis.tar.gz ${TIS_TAR_GZ} --no-check-certificate \
 
 # Install TIS dependencies
 RUN sed -i 's?"sudo", "apt", "install"?"sudo", "apt-get", "install"?g' tis/scripts/dependency-manager \
+  && sed -i 's?"sudo", "apt", "update"?"sudo", "apt-get", "update"?g' tis/scripts/dependency-manager \
   && ./tis/scripts/dependency-manager install -y -m base,gstreamer,aravis
 
 # Compile
