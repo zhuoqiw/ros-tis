@@ -1,32 +1,29 @@
 # Install TIS on ROS
-FROM ubuntu:18.04
+FROM ros:galactic
+
+# URL
+ARG TIS_TAR_GZ=https://github.com/TheImagingSource/tiscamera/archive/refs/tags/v-tiscamera-0.14.0.tar.gz
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
   wget \
-  libzip4 \
-  libglib2.0-0 \
-  libgirepository-1.0-1 \
-  libusb-1.0-0 \
-  libgstreamer1.0-0 \
-  gstreamer1.0-plugins-base \
-  gstreamer1.0-plugins-good \
-  gstreamer1.0-plugins-bad \
-  gstreamer1.0-plugins-ugly \
-  libxml2 \
-  libpcap0.8 \
-  python3-pyqt5 \
-  python3-gi \
-  python3-gst-1.0 \
-  python-gi \
-  python-gst-1.0 \
-  dialog \
-  apt-utils \
   && rm -rf /var/lib/apt/lists/*
 
-# Download and install and remove
-RUN wget https://github.com/TheImagingSource/tiscamera/releases/download/v-tiscamera-0.14.0/tiscamera_0.14.0.3054_amd64_ubuntu_1804.deb --no-check-certificate
-# \
-#  && apt-get install -y ./tiscamera_0.14.0.3054_amd64_ubuntu_1804.deb \
-#  && rm tiscamera_0.14.0.3054_amd64_ubuntu_1804.deb
+# Download
+RUN wget -O tis.tar.gz ${TIS_TAR_GZ} -no-check-certificate \
+  && mkdir -p tis/build \
+  && tar -xzf tis.tar.gz --strip-components=1 -C tis \
+  && rm tis.tar.gz
 
+# Install TIS dependencies
+RUN sed -i 's?"sudo", "apt", "install"?"sudo", "apt-get", "install"?g' tis/scripts/dependency-manager \
+  && tis/scripts/dependency-manager install -y --no-update -m base,gstreamer,aravis
+
+# Compile
+RUN cmake \
+  -D BUILD_ARAVIS:BOOL=ON \
+  -D TCAM_ARAVIS_USB_VISION:BOOL=ON \
+  -D BUILD_V4L2:BOOL=OFF \
+  -S tis/ \
+  -B tis/build/ \
+  && cmake --build tis/build/ --target install
