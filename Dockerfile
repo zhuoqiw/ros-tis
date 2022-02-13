@@ -18,3 +18,4 @@ RUN cmake \
   -S tis/ \
   -B tis/build/ \
   && cmake --build tis/build/ --target install
+
