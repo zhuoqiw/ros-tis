@@ -1,19 +1,9 @@
 # Install TIS on ROS
 FROM ros:galactic
 
-# URL
-ARG TIS_TAR_GZ=https://github.com/TheImagingSource/tiscamera/archive/refs/tags/v-tiscamera-0.14.0.tar.gz
-
-# Install dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  wget \
-  && rm -rf /var/lib/apt/lists/*
-
-# Download
-RUN wget -O tis.tar.gz ${TIS_TAR_GZ} --no-check-certificate \
-  && mkdir -p tis/build \
-  && tar -xzf tis.tar.gz --strip-components=1 -C tis \
-  && rm tis.tar.gz
+# Clone repo
+RUN git clone --depth 1 --branch v-tiscamera-0.14.0 https://github.com/TheImagingSource/tiscamera.git tis \
+  && mkdir tis/build
 
 # Install TIS dependencies
 RUN sed -i 's?"sudo", "apt", "install"?"sudo", "apt-get", "install"?g' tis/scripts/dependency-manager \
