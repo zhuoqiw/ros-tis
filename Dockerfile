@@ -23,8 +23,10 @@ FROM ros:galactic
 
 COPY --from=0 tis_src tis_src
 
+COPY --from=0 /opt/tiscamera /opt/tiscamera
+
 RUN ./tis_src/scripts/dependency-manager install --runtime -y -m base,gstreamer,aravis \
   && rm -r tis_src
 
-COPY --from=0 /opt/tiscamera /opt/tiscamera
-
+RUN echo "/opt/tiscamera/lib" >> /etc/ld.so.conf.d/tiscamera.conf \
+  && ldconfig
