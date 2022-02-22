@@ -13,7 +13,6 @@ RUN cmake \
   -D BUILD_ARAVIS:BOOL=ON \
   -D TCAM_ARAVIS_USB_VISION:BOOL=ON \
   -D BUILD_V4L2:BOOL=OFF \
-  -D CMAKE_INSTALL_PREFIX:STRING=/opt/tiscamera \
   -S tiscamera \
   -B tiscamera/build \
   && cmake --build tiscamera/build \
