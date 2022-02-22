@@ -1,4 +1,4 @@
-name: ci
+name: Build ros-tis image
 
 # Controls when the workflow will run
 on: workflow_dispatch
