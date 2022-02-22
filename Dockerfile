@@ -19,7 +19,3 @@ RUN cmake \
   && cmake --install tiscamera/build \
   && rm -r tiscamera
 
-# Update ldconfig
-RUN echo "/opt/tiscamera/lib" >> /etc/ld.so.conf.d/tiscamera.conf \
-  && ldconfig
-
