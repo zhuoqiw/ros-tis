@@ -6,7 +6,7 @@ RUN git clone -b v-tiscamera-0.14.0 https://github.com/TheImagingSource/tiscamer
 
 # Install TIS dependencies
 RUN sed -i 's?"sudo", "apt"?"sudo", "apt-get"?g' tiscamera/scripts/dependency-manager \
-  && ./tiscamera/scripts/dependency-manager install -y -m base,gstreamer
+  && ./tiscamera/scripts/dependency-manager install -y
 
 # Config, build, install TIS
 RUN cmake \
