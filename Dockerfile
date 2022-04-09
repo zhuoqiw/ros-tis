@@ -4,6 +4,7 @@ FROM ubuntu:20.04 AS base
 # Install python3 and git
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
+    ca-certificates \
     python3 \
     git
 
