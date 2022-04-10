@@ -25,4 +25,4 @@ RUN cmake \
 
 FROM busybox:latest
 
-COPY --from=base /tiscamera/build/tiscamera*.deb /tiscamera.deb
+COPY --from=base /tiscamera/build/tiscamera*.deb /tiscamera_0.14.0.3054_ubuntu_2004.deb
