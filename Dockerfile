@@ -4,13 +4,13 @@ FROM ros:galactic AS base
 # Clone TIS repo
 RUN git clone -b v-tiscamera-0.14.0 https://github.com/TheImagingSource/tiscamera.git
 
+# Remove extra dependencies
+COPY ubuntu_2004.dep tiscamera/dependencies
+
 # Install TIS dependencies
 RUN sed -i 's?"sudo", "apt"?"apt-get"?g' tiscamera/scripts/dependency-manager \
     && export DEBIAN_FRONTEND=noninteractive \
     && ./tiscamera/scripts/dependency-manager install -y
-
-# Remove extra dependencies
-COPY ubuntu_2004.dep tiscamera/dependencies
 
 # Config, build
 RUN cmake \
