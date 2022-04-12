@@ -11,6 +11,7 @@ RUN sed -i 's?"sudo", "apt"?"apt-get"?g' tiscamera/scripts/dependency-manager \
 
 # Config, build
 RUN cmake \
+    -D TCAM_BUILD_WITH_GUI:BOOL=OFF \
     -S tiscamera \
     -B tiscamera/build \
     && cmake --build tiscamera/build --target package
