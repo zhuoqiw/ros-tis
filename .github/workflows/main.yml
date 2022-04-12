@@ -30,6 +30,6 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: zhuoqiw/ros-tis:0.14.0-pkg
-          cache-from: type=registry,ref=zhuoqiw/ros-tis:0.14.0-pkg
+          tags: zhuoqiw/ros-tis:0.14.0
+          cache-from: type=registry,ref=zhuoqiw/ros-tis:0.14.0
           cache-to: type=inline

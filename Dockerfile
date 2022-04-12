@@ -1,12 +1,5 @@
 # Build TIS deb package on ubuntu:20.04
-FROM ubuntu:20.04 AS base
-
-# Install python3 and git
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
-    ca-certificates \
-    python3 \
-    git
+FROM ros:galactic AS base
 
 # Clone TIS repo
 RUN git clone -b v-tiscamera-0.14.0 https://github.com/TheImagingSource/tiscamera.git
@@ -24,4 +17,5 @@ RUN cmake \
 
 FROM busybox:latest
 
-COPY --from=base /tiscamera/build/tiscamera*.deb /tiscamera_0.14.0.3054_ubuntu_2004.deb
+COPY --from=base /tiscamera/build/tiscamera*.deb /tiscamera.deb
+
