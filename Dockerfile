@@ -17,7 +17,7 @@ RUN cmake \
 
 # Config, build
 RUN cmake \
-    -D TCAM_BUILD_UVC_EXTENSION_LOADER_ONLY:BOOL=ON
+    -D TCAM_BUILD_UVC_EXTENSION_LOADER_ONLY:BOOL=ON \
     -S tiscamera \
     -B tiscamera/build \
     && cmake --build tiscamera/build --target package
