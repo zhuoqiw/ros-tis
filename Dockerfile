@@ -9,15 +9,12 @@ RUN sed -i 's?"sudo", "apt"?"apt-get"?g' tiscamera/scripts/dependency-manager \
     && export DEBIAN_FRONTEND=noninteractive \
     && ./tiscamera/scripts/dependency-manager install -y
 
-# Config, build
-RUN cmake \
-    -S tiscamera \
-    -B tiscamera/build \
-    && cmake --build tiscamera/build --target package
+# Remove extra dependencies
+COPY ubuntu_2004.dep tiscamera/dependencies
 
 # Config, build
 RUN cmake \
-    -D TCAM_BUILD_UVC_EXTENSION_LOADER_ONLY:BOOL=ON \
+    -D TCAM_BUILD_WITH_GUI:BOOL=OFF \
     -S tiscamera \
     -B tiscamera/build \
     && cmake --build tiscamera/build --target package
