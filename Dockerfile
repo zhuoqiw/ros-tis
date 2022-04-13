@@ -4,13 +4,10 @@ FROM ros:galactic AS base
 # Clone TIS repo
 RUN git clone -b v-tiscamera-0.14.0 https://github.com/TheImagingSource/tiscamera.git
 
-# Remove extra dependencies
-# COPY ubuntu_2004.dep tiscamera/dependencies
-
 # Install TIS dependencies
 RUN sed -i 's?"sudo", "apt"?"apt-get"?g' tiscamera/scripts/dependency-manager \
     && export DEBIAN_FRONTEND=noninteractive \
-    && ./tiscamera/scripts/dependency-manager install -y \
+    && ./tiscamera/scripts/dependency-manager install --yes --compilation --modules base,gstreamer,v4l2 \
     && rm -rf /var/lib/apt/lists/*
 
 # Config, build, package
@@ -32,6 +29,7 @@ FROM busybox:latest
 # Copy created deb
 COPY --from=base /build_package/tiscamera*.deb /tiscamera.deb
 
+# Copy udev related files
 COPY --from=base /tiscamera/data/uvc-extensions /setup/usr/share/theimagingsource/tiscamera/uvc-extension
 COPY --from=base /build_uvc/data/udev/80-theimagingsource-cameras.rules /setup/etc/udev/rules.d/80-theimagingsource-cameras.rules
 COPY --from=base /build_uvc/src/v4l2/libtcam-uvc-extension.so /setup/usr/lib/libtcam-uvc-extension.so
