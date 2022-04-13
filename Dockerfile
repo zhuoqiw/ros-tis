@@ -30,7 +30,7 @@ RUN cmake \
 FROM busybox:latest
 
 # Copy created deb
-COPY --from=base /tiscamera/build_package/tiscamera*.deb /tiscamera.deb
+COPY --from=base /build_package/tiscamera*.deb /tiscamera.deb
 
 COPY --from=base /tiscamera/data/uvc-extensions /setup/usr/share/theimagingsource/tiscamera/uvc-extension
 COPY --from=base /build_uvc/data/udev/80-theimagingsource-cameras.rules /setup/etc/udev/rules.d/80-theimagingsource-cameras.rules
