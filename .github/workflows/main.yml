@@ -1,16 +1,17 @@
 name: Build ros-tis
 
 # Controls when the workflow will run
-on: workflow_dispatch
-  inputs:
-    ubuntu_version:
-      description: 'Ubuntu version'
-      required: true
-      default: '22.04'
-      type: choice
-      options:
-      - '20.04'
-      - '22.04'
+on:
+  workflow_dispatch:
+    inputs:
+      ubuntu_version:
+        description: 'Ubuntu version'
+        required: true
+        default: '22.04'
+        type: choice
+        options:
+        - '20.04'
+        - '22.04'
 
 defaults:
   run:
