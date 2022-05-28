@@ -1,10 +1,11 @@
+# ROS code name: galactic, humble
 ARG TAG
 
 # Build TIS deb package on ros:galactic
 FROM ros:${TAG} AS base
 
 # Clone TIS repo
-RUN git clone -b v-tiscamera-0.14.0 https://github.com/TheImagingSource/tiscamera.git
+RUN git clone https://github.com/TheImagingSource/tiscamera.git
 
 # Overwrite dependencies, remove libzip5
 COPY ubuntu*.dep ./tiscamera/dependencies/
