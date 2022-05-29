@@ -132,25 +132,6 @@
             "modules": ["gstreamer"]
         },
         {
-            "name": "gstreamer1.0-plugins-good",
-            "version": ">= 1.8.0",
-            "phase": "runtime",
-            "modules": ["gstreamer"]
-        },
-        {
-            "name": "gstreamer1.0-plugins-bad",
-            "version": ">= 1.8.0",
-            "phase": "runtime",
-            "modules": ["gstreamer"]
-        },
-        {
-            "name": "gstreamer1.0-plugins-ugly",
-            "version": ">= 1.8.3",
-            "phase": "runtime",
-            "modules": ["gstreamer"]
-        },
-
-        {
             "name": "libxml2-dev",
             "version": ">= 2.9.3",
             "phase": "compilation",
