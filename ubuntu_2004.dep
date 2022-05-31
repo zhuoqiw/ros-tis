@@ -67,6 +67,13 @@
             "phase": "compilation",
             "modules": ["tools-aravis"]
         },
+
+        {
+            "name": "libzip5",
+            "version": ">= 1.0.1",
+            "phase": "runtime",
+            "modules": ["base", "aravis"]
+        },
         {
             "name": "libglib2.0-0",
             "version": ">= 2.48.2",

@@ -29,14 +29,14 @@ RUN cmake \
     -B build_uvc \
     && cmake --build build_uvc
 
-# # Use busybox as container
-# FROM busybox:latest
+# Use busybox as container
+FROM busybox:latest
 
-# # Copy created deb
-# COPY --from=base /build_package/tiscamera*.deb /tiscamera.deb
+# Copy created deb
+COPY --from=base /build_package/tiscamera*.deb /tiscamera.deb
 
-# # Copy udev related files
-# COPY --from=base /tiscamera/data/uvc-extensions /setup/usr/share/theimagingsource/tiscamera/uvc-extension
-# COPY --from=base /build_uvc/data/udev/80-theimagingsource-cameras.rules /setup/etc/udev/rules.d/80-theimagingsource-cameras.rules
-# COPY --from=base /build_uvc/src/v4l2/libtcam-uvc-extension.so /setup/usr/lib/libtcam-uvc-extension.so
-# COPY --from=base /build_uvc/tools/tcam-uvc-extension-loader/tcam-uvc-extension-loader /setup/usr/bin/tcam-uvc-extension-loader
+# Copy udev related files
+COPY --from=base /tiscamera/data/uvc-extensions /setup/usr/share/theimagingsource/tiscamera/uvc-extension
+COPY --from=base /build_uvc/data/udev/80-theimagingsource-cameras.rules /setup/etc/udev/rules.d/80-theimagingsource-cameras.rules
+COPY --from=base /build_uvc/src/v4l2/libtcam-uvc-extension.so /setup/usr/lib/libtcam-uvc-extension.so
+COPY --from=base /build_uvc/tools/tcam-uvc-extension-loader/tcam-uvc-extension-loader /setup/usr/bin/tcam-uvc-extension-loader
