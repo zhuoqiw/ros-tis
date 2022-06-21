@@ -7,7 +7,7 @@ FROM ros:${TAG} AS base
 # Clone TIS repo
 RUN git clone https://github.com/TheImagingSource/tiscamera.git
 
-# Overwrite dependencies, remove libzip5
+# Overwrite dependencies, remove good, bad, ugly
 COPY ubuntu*.dep ./tiscamera/dependencies/
 
 # Install TIS dependencies
@@ -18,7 +18,11 @@ RUN sed -i 's?"sudo", "apt"?"apt-get"?g' tiscamera/scripts/dependency-manager \
 
 # Config, build, package
 RUN cmake \
-    -D BUILD_TOOLS:BOOL=OFF \
+    -D TCAM_BUILD_ARAVIS:BOOL=OFF \
+    -D TCAM_BUILD_TOOLS:BOOL=OFF \
+    -D TCAM_BUILD_LIBUSB:BOOL=OFF \
+    -D TCAM_BUILD_DOCUMENTATION:BOOL=OFF \
+    -D TCAM_BUILD_WITH_GUI:BOOL=OFF \
     -S tiscamera \
     -B build_package \
     && cmake --build build_package --target package

@@ -61,14 +61,7 @@
             "phase": "compilation",
             "modules": ["base"]
         },
-        {
-            "name": "python3-setuptools",
-            "version": ">= 20.7.0-1",
-            "phase": "compilation",
-            "modules": ["tools-aravis"]
-        },
-
-        {
+          {
             "name": "libzip5",
             "version": ">= 1.0.1",
             "phase": "runtime",
@@ -139,38 +132,27 @@
             "modules": ["gstreamer"]
         },
         {
+            "name": "gstreamer1.0-plugins-good",
+            "version": ">= 1.8.0",
+            "phase": "runtime",
+            "modules": ["gstreamer"]
+        },
+        {
+            "name": "gstreamer1.0-plugins-bad",
+            "version": ">= 1.8.0",
+            "phase": "runtime",
+            "modules": ["gstreamer"]
+        },
+        {
+            "name": "gstreamer1.0-plugins-ugly",
+            "version": ">= 1.8.3",
+            "phase": "runtime",
+            "modules": ["gstreamer"]
+        },
+
+        {
             "name": "libxml2-dev",
             "version": ">= 2.9.3",
-            "phase": "compilation",
-            "modules": ["aravis"]
-        },
-        {
-            "name": "libtool",
-            "version": ">= 2.4.6",
-            "phase": "compilation",
-            "modules": ["aravis"]
-        },
-        {
-            "name": "autoconf",
-            "version": ">= 2.69-9",
-            "phase": "compilation",
-            "modules": ["aravis"]
-        },
-        {
-            "name": "intltool",
-            "version": ">= 0.51.0",
-            "phase": "compilation",
-            "modules": ["aravis"]
-        },
-        {
-            "name": "gtk-doc-tools",
-            "version": ">= 1.25",
-            "phase": "compilation",
-            "modules": ["aravis"]
-        },
-        {
-            "name": "libpcap-dev",
-            "version": ">= 1.7.4-2",
             "phase": "compilation",
             "modules": ["aravis"]
         },
@@ -181,29 +163,34 @@
             "modules": ["aravis"]
         },
         {
-            "name": "libpcap0.8",
-            "version": ">= 1.7.4-2",
-            "phase": "runtime",
+            "name": "ninja-build",
+            "version": ">= 1.10.0",
+            "phase": "compilation",
             "modules": ["aravis"]
         },
-
         {
-            "name": "python3-pyqt5",
-            "version": ">= 5.5.1",
+            "name": "libqt5widgets5",
+            "version": ">= 5.9.5",
             "phase": "runtime",
             "modules": ["gui", "tools"]
         },
         {
-            "name": "python3-gi",
-            "version": ">= 3.20.0",
+            "name": "libqt5gui5",
+            "version": ">= 5.9.5",
             "phase": "runtime",
             "modules": ["gui", "tools"]
         },
         {
-            "name": "python3-gst-1.0",
-            "version": ">= 1.14.0",
-            "phase": "runtime",
+            "name": "qtbase5-dev",
+            "version": ">= 5.9.5",
+            "phase": "compilation",
             "modules": ["gui", "tools"]
+        },
+        {
+            "name": "graphviz",
+            "version": ">= 2.40.1",
+            "phase": "compilation",
+            "modules": ["documentation"]
         }
     ]
 
