@@ -18,6 +18,7 @@ RUN sed -i 's?"sudo", "apt"?"apt-get"?g' tiscamera/scripts/dependency-manager \
 
 # Config, build, package
 RUN cmake \
+    -D TCAM_ARAVIS_USB_VISION=OFF \
     -D TCAM_BUILD_ARAVIS=OFF \
     -D TCAM_BUILD_TOOLS=OFF \
     -D TCAM_BUILD_LIBUSB=OFF \
