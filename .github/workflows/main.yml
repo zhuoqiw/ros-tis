@@ -42,8 +42,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: TAG=galactic
           push: true
-          tags: zhuoqiw/ros-tis:focal-0.14.0
-          cache-from: type=registry,ref=zhuoqiw/ros-tis:focal-0.14.0
+          tags: zhuoqiw/ros-tis:focal-1.0.0
+          cache-from: type=registry,ref=zhuoqiw/ros-tis:focal-1.0.0
           cache-to: type=inline
       -
         name: Build and push on 22.04
@@ -53,6 +53,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: TAG=humble
           push: true
-          tags: zhuoqiw/ros-tis:jammy-0.14.0
-          cache-from: type=registry,ref=zhuoqiw/ros-tis:jammy-0.14.0
+          tags: zhuoqiw/ros-tis:jammy-1.0.0
+          cache-from: type=registry,ref=zhuoqiw/ros-tis:jammy-1.0.0
           cache-to: type=inline
