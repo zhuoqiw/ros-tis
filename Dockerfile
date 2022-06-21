@@ -18,12 +18,11 @@ RUN sed -i 's?"sudo", "apt"?"apt-get"?g' tiscamera/scripts/dependency-manager \
 
 # Config, build, package
 RUN cmake \
-    -D TCAM_ARAVIS_USB_VISION=OFF \
-    -D TCAM_BUILD_ARAVIS=OFF \
-    -D TCAM_BUILD_TOOLS=OFF \
-    -D TCAM_BUILD_LIBUSB=OFF \
-    -D TCAM_BUILD_DOCUMENTATION=OFF \
-    -D TCAM_BUILD_WITH_GUI=OFF \
+    -D TCAM_ARAVIS_USB_VISION:BOOL=OFF \
+    -D TCAM_BUILD_ARAVIS:BOOL=OFF \
+    -D TCAM_BUILD_TOOLS:BOOL=OFF \
+    -D TCAM_BUILD_LIBUSB:BOOL=OFF \
+    -D TCAM_BUILD_DOCUMENTATION:BOOL=OFF \
     -S tiscamera \
     -B build_package \
     && cmake --build build_package --target package
@@ -31,8 +30,8 @@ RUN cmake \
 RUN cmake \
     -D TCAM_BUILD_UVC_EXTENSION_LOADER_ONLY:BOOL=ON \
     -S tiscamera \
-    -B build_uvc \
-    && cmake --build build_uvc
+    -B build_package \
+    && cmake --build build_package
 
 # Use busybox as container
 FROM busybox:latest
@@ -42,6 +41,5 @@ COPY --from=base /build_package/tiscamera*.deb /tiscamera.deb
 
 # Copy udev related files
 COPY --from=base /tiscamera/data/uvc-extensions /setup/usr/share/theimagingsource/tiscamera/uvc-extension
-COPY --from=base /build_uvc/data/udev/80-theimagingsource-cameras.rules /setup/etc/udev/rules.d/80-theimagingsource-cameras.rules
-COPY --from=base /build_uvc/src/v4l2/libtcam-uvc-extension.so /setup/usr/lib/libtcam-uvc-extension.so
-COPY --from=base /build_uvc/tools/tcam-uvc-extension-loader/tcam-uvc-extension-loader /setup/usr/bin/tcam-uvc-extension-loader
+COPY --from=base /build_package/data/udev/80-theimagingsource-cameras.rules /setup/etc/udev/rules.d/80-theimagingsource-cameras.rules
+COPY --from=base /build_package/bin/tcam-uvc-extension-loader/tcam-uvc-extension-loader /setup/usr/bin/tcam-uvc-extension-loader
