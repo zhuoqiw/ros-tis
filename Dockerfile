@@ -18,11 +18,11 @@ RUN sed -i 's?"sudo", "apt"?"apt-get"?g' tiscamera/scripts/dependency-manager \
 
 # Config, build, package
 RUN cmake \
-    -D TCAM_BUILD_ARAVIS:BOOL=OFF \
-    -D TCAM_BUILD_TOOLS:BOOL=OFF \
-    -D TCAM_BUILD_LIBUSB:BOOL=OFF \
-    -D TCAM_BUILD_DOCUMENTATION:BOOL=OFF \
-    -D TCAM_BUILD_WITH_GUI:BOOL=OFF \
+    -D TCAM_BUILD_ARAVIS=OFF \
+    -D TCAM_BUILD_TOOLS=OFF \
+    -D TCAM_BUILD_LIBUSB=OFF \
+    -D TCAM_BUILD_DOCUMENTATION=OFF \
+    -D TCAM_BUILD_WITH_GUI=OFF \
     -S tiscamera \
     -B build_package \
     && cmake --build build_package --target package
