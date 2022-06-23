@@ -25,7 +25,7 @@ on:
 
 # For more details, see https://docs.github.com/en/actions/using-workflows/reusing-workflows
 jobs:
-  reusable_workflow_job::
+  reusable_workflow_job:
     name: ${{ github.ref_name }}
     uses: zhuoqiw/docker-build-push/.github/workflows/main.yml@master
     with:
