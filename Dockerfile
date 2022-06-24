@@ -5,7 +5,7 @@ ARG ROS_DISTRO
 FROM ros:${ROS_DISTRO} AS base
 
 # Clone TIS repo
-RUN git clone -b  v-tiscamera-1.0.0 https://github.com/TheImagingSource/tiscamera.git
+RUN git clone -b v-tiscamera-1.0.0 https://github.com/TheImagingSource/tiscamera.git
 
 # Overwrite dependencies, remove good, bad, ugly
 COPY ubuntu*.dep ./tiscamera/dependencies/
@@ -27,6 +27,7 @@ RUN cmake \
     -B build_package \
     && cmake --build build_package --target package
 
+# Build uvc extension loader only
 RUN cmake \
     -D TCAM_BUILD_UVC_EXTENSION_LOADER_ONLY:BOOL=ON \
     -S tiscamera \
