@@ -44,3 +44,6 @@ COPY --from=base /build_package/tiscamera*.deb /tiscamera.deb
 COPY --from=base /tiscamera/data/uvc-extensions /setup/usr/share/theimagingsource/tiscamera/uvc-extension
 COPY --from=base /build_package/data/udev/80-theimagingsource-cameras.rules /setup/etc/udev/rules.d/80-theimagingsource-cameras.rules
 COPY --from=base /build_package/bin/tcam-uvc-extension-loader /setup/usr/bin/tcam-uvc-extension-loader
+
+# Mount point for image users to install udev rules, etc.
+VOLUME [ "/setup" ]

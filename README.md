@@ -12,11 +12,17 @@ To fully use tiscamera, two pieces of infomation should be setup properly on hos
 These may be accomplished by following these steps:
 
 ```bash
-docker run --name tis zhuoqiw/ros-tis
-sudo docker cp tis:/setup/usr /
-sudo docker cp tis:/setup/etc /
-docker rm tis
-sudo udevadm control --reload-rules # or reboot
+# run this image once so the setup volume (via mount point) persists
+docker run --rm -v ros-tis-setup:/setup zhuoqiw/ros-tis
+
+# copy udev rule and uvc
+sudo cp -r /var/lib/docker/volumes/ros-tis-setup/_data/* /
+
+# optional, in case to save a little bit disk usage
+docker volume rm ros-tis-setup
+
+# optional, reboot otherwise
+sudo udevadm control --reload-rules
 ```
 
 ## For container (multistage built image typically)
