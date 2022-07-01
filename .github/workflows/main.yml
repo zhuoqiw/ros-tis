@@ -29,7 +29,7 @@ jobs:
     name: ${{ github.ref_name }}
     uses: zhuoqiw/docker-build-push/.github/workflows/main.yml@master
     with:
-      ubuntu_version: ${{ inputs.ubuntu_version }}
-      platforms: ${{ inputs.platforms }}
+      ubuntu_version: ${{ github.event.inputs.ubuntu_version }}
+      platforms: ${{ github.event.inputs.platforms }}
       image_tag: 1.0.0
     secrets: inherit
